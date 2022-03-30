@@ -1,18 +1,19 @@
 const { Schema, model } = require("mongoose");
-const { isEmail } = require("validator");
 
 const UserSchema = new Schema(
   {
     username: {
-      type: String.set("trim", true),
+      type: String,
       unique: true,
       require: true,
+      trim: true,
     },
     email: {
       type: String,
       require: true,
       unique: true,
-      validate: [isEmail, "invalid email"],
+      match: /.+\@.+\..+/,
+      unique: true,
     },
     thoughts: [
       {
