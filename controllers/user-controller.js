@@ -20,6 +20,7 @@ const userController = {
       .populate({
         path: 'thoughts',
         select: '-__v'
+        // may need to add populate for friends as it's just a number now
       })
       .select('-__v')
       .then(dbUserData => {
