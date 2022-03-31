@@ -12,8 +12,7 @@ const UserSchema = new Schema(
       type: String,
       require: true,
       unique: true,
-      match: /.+\@.+\..+/,
-      unique: true,
+      match: [/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/, 'Invalid email format'],
     },
     thoughts: [
       {
@@ -31,7 +30,6 @@ const UserSchema = new Schema(
   {
     toJSON: {
       virtuals: true,
-      getters: true,
     },
     id: false,
   }

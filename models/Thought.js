@@ -16,9 +16,15 @@ const ReactionSchema = new Schema(
             type: Date,
             default: Date.now,
             get: (createdAtVal) => dateFormat(createdAtVal),
-        }
+        },
+        // Do I need username (writtenBy) here?
+    },
+    {
+        toJSON: {
+            getters: true,
+        },
     }
-)
+);
 
 
 const ThoughtSchema = new Schema(
