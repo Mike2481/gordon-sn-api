@@ -52,7 +52,7 @@ const thoughtController = {
       .catch((err) => res.status(400).json(err));
   },
   updateThought({ params, body }, res) {
-    Thought.findOneAndUpdate({ _id: params.id }, body, { new: true })
+    Thought.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
       .populate({
         path: "reactions",
         select: "-__v",
@@ -93,7 +93,7 @@ const thoughtController = {
     Thought.findOneAndUpdate(
       { _id: params.thoughtId },
       { $addToSet: { reactions: body } },
-      { new: true }
+      { new: true, runValidators: true }
     )
       .populate({
         path: "reactions",
